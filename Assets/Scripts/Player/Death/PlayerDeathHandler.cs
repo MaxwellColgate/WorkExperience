@@ -17,7 +17,7 @@ public class PlayerDeathHandler : MonoBehaviour
     {
         if(other.gameObject.layer == 3 && isGroundCheck) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
 
-        Transform startPos = LevelData.Instance.startPos; // The level's starting position
+        Transform startPos = LevelData.Instance.spawnPos; // The level's starting position
 
         transform.parent.position = startPos.position;
         playerRigidbody.velocity = Vector3.zero;
