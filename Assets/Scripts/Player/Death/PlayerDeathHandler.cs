@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PlayerDeathHandler : MonoBehaviour
 {
-    // Checks for when the player should die and handles said death
+    // Checks when the player crashes into things and kills the player when they do
 
     [Tooltip("The player's rigidbody")]
     [SerializeField] Rigidbody playerRigidbody;
 
-    // If player hits a non-safe object, send them back to the start of the level
-    void OnCollisionEnter(Collision other)
-    {
-        if(other.gameObject.layer == 3) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
+    [Tooltip("Is this DeathHandler checking if the player dies when they stand on something?")]
+    [SerializeField] bool isGroundCheck;
 
-        gameObject.transform.position = LevelData.Instance.startPos.position;
+    // If player hits a non-safe object, send them back to the start of the level
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == 3 && isGroundCheck) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
+
+        Transform startPos = LevelData.Instance.spawnPos; // The level's starting position
+
+        transform.parent.position = startPos.position;
         playerRigidbody.velocity = Vector3.zero;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+        transform.parent.rotation = startPos.rotation;
     }
 }

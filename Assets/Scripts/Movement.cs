@@ -6,8 +6,14 @@ public class Movement : MonoBehaviour
 {
 
     public  Rigidbody body;
+
+    [Tooltip("The player's camera manager")]
+    [SerializeField] CameraManager cameraMan;
+
     public float forwardforce = 2000f;
     public float jumpforce = 5f;
+
+    public bool isGrounded;
 
     private void Start()
     {
@@ -19,7 +25,7 @@ public class Movement : MonoBehaviour
         //jump input
         body.velocity = new Vector3 (transform.forward.x * forwardforce * Time.deltaTime, body.velocity.y, transform.forward.z * forwardforce * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) 
         {
             body.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
         }
@@ -28,12 +34,14 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A)) 
         {
             transform.Rotate(0, -90f, 0);
+            cameraMan.SwitchCameraPos(CameraManager.cameraPositions.defaultLeft, 0.02f);
         }
 
         //Rotate Right (D key )
         if (Input.GetKeyDown(KeyCode.D))
         {
             transform.Rotate(0, 90f, 0);
+            cameraMan.SwitchCameraPos(CameraManager.cameraPositions.defaultRight, 0.02f);
         }
 
     }

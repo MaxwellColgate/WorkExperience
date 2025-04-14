@@ -6,8 +6,8 @@ public class LevelData : MonoBehaviour
 {
     // Stores important per-level information
 
-    [Tooltip("The starting position of the level")]
-    public Transform startPos;
+    [Tooltip("The current spawn position of the level")]
+    public Transform spawnPos;
 
     public static LevelData Instance { get; private set; }
 
