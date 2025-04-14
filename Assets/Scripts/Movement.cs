@@ -12,12 +12,12 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         body = GetComponent<Rigidbody>();
-        body.drag = 5f;
+        body.drag = 0f;
     }
     private void Update()
     {
         //jump input
-        body.velocity = transform.forward * forwardforce * Time.deltaTime;
+        body.velocity = new Vector3 (transform.forward.x * forwardforce * Time.deltaTime, body.velocity.y, transform.forward.z * forwardforce * Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
