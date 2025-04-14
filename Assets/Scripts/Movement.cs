@@ -7,44 +7,34 @@ public class Movement : MonoBehaviour
 
     public  Rigidbody body;
     public float forwardforce = 2000f;
-    public float sidewaysforce = 1000f;
     public float jumpforce = 5f;
-    public float rotationSpeed = 100f;
 
     private void Start()
     {
         body = GetComponent<Rigidbody>();
+        body.drag = 5f;
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        body.AddForce(0, 0, forwardforce * Time.deltaTime);
-
-        if (Input.GetKey("d")) 
-        {
-            body.AddForce(sidewaysforce*Time.deltaTime, 0, 0);
-        }
-
-        if (Input.GetKey("a")) 
-        {
-            body.AddForce(-sidewaysforce*Time.deltaTime,0,0);
-        }
+        //jump input
+        body.velocity = transform.forward * forwardforce * Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Space)) 
         {
             body.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
         }
 
-        if (Input.GetKey(KeyCode.Q))
+        //Rotate left (A key)
+        if (Input.GetKeyDown(KeyCode.A)) 
         {
-            transform.Rotate(Vector3.down, rotationSpeed * Time.deltaTime);
+            transform.Rotate(0, -90f, 0);
         }
 
-        if (Input.GetKey(KeyCode.E))
+        //Rotate Right (D key )
+        if (Input.GetKeyDown(KeyCode.D))
         {
-            transform.Rotate(Vector3.up, rotationSpeed * Time.deltaTime);
+            transform.Rotate(0, 90f, 0);
         }
-
-       
 
     }
 
