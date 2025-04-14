@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class PlayerDeathHandler : MonoBehaviour
 {
-    // Checks for when the player should die and handles said death
+    // Checks when the player crashes into things and kills the player when they do
 
     [Tooltip("The player's rigidbody")]
     [SerializeField] Rigidbody playerRigidbody;
 
     // If player hits a non-safe object, send them back to the start of the level
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 3) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
 
-        gameObject.transform.position = LevelData.Instance.startPos.position;
+        Transform startPos = LevelData.Instance.startPos; // The level's starting position
+
+        transform.parent.transform.position = startPos.position;
         playerRigidbody.velocity = Vector3.zero;
-        transform.rotation = Quaternion.Euler(Vector3.zero);
+        transform.parent.rotation = startPos.rotation;
     }
 }
