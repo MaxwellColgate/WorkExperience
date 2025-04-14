@@ -13,6 +13,8 @@ public class Movement : MonoBehaviour
     public float forwardforce = 2000f;
     public float jumpforce = 5f;
 
+    public bool isGrounded;
+
     private void Start()
     {
         body = GetComponent<Rigidbody>();
@@ -23,7 +25,7 @@ public class Movement : MonoBehaviour
         //jump input
         body.velocity = new Vector3 (transform.forward.x * forwardforce * Time.deltaTime, body.velocity.y, transform.forward.z * forwardforce * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded) 
         {
             body.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
         }
