@@ -16,7 +16,7 @@ public class PlayerDeathHandler : MonoBehaviour
 
         Transform startPos = LevelData.Instance.startPos; // The level's starting position
 
-        transform.parent.transform.position = startPos.position;
+        transform.parent.position = startPos.position;
         playerRigidbody.velocity = Vector3.zero;
         transform.parent.rotation = startPos.rotation;
     }

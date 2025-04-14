@@ -6,6 +6,10 @@ public class Movement : MonoBehaviour
 {
 
     public  Rigidbody body;
+
+    [Tooltip("The player's camera manager")]
+    [SerializeField] CameraManager cameraMan;
+
     public float forwardforce = 2000f;
     public float jumpforce = 5f;
 
@@ -28,12 +32,14 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A)) 
         {
             transform.Rotate(0, -90f, 0);
+            cameraMan.SwitchCameraPos(CameraManager.cameraPositions.defaultLeft, 0.02f);
         }
 
         //Rotate Right (D key )
         if (Input.GetKeyDown(KeyCode.D))
         {
             transform.Rotate(0, 90f, 0);
+            cameraMan.SwitchCameraPos(CameraManager.cameraPositions.defaultRight, 0.02f);
         }
 
     }
