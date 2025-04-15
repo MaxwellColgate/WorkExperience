@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class LevelData : MonoBehaviour
 {
-    // Stores important per-level information
+    // Stores per-level information that stays the same across level attempts
 
-    [Tooltip("The current spawn position of the level")]
-    public Transform spawnPos;
+    [Header("References")]
+
+    [Tooltip("This level's music")]
+    public AudioClip levelMusic;
+
+    [Tooltip("The BPM of this level's music, affects speed of level")]
+    public double levelBPM;
+
+    [Tooltip("An ordered list of every spawn point in the level")]
+    public Transform[] spawnPos;
 
     public static LevelData Instance { get; private set; }
 
@@ -20,5 +28,11 @@ public class LevelData : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
+    }
+
+    // When the level loads, either when starting for the first time or on death, start the level
+    void Start()
+    {
+        LevelManager.Instance.StartLevel();
     }
 }

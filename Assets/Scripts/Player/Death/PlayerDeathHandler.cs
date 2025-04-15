@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerDeathHandler : MonoBehaviour
 {
@@ -17,10 +18,8 @@ public class PlayerDeathHandler : MonoBehaviour
     {
         if(other.gameObject.layer == 3 && isGroundCheck) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
 
-        Transform startPos = LevelData.Instance.spawnPos; // The level's starting position
-
-        transform.parent.position = startPos.position;
-        playerRigidbody.velocity = Vector3.zero;
-        transform.parent.rotation = startPos.rotation;
+        LevelManager.Instance.levelAttempt += 1;
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }
