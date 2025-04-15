@@ -20,11 +20,12 @@ public class Movement : MonoBehaviour
         body = GetComponent<Rigidbody>();
         body.drag = 0f;
     }
+
     private void Update()
     {
-        //jump input
-        body.velocity = new Vector3 (transform.forward.x * forwardforce * Time.deltaTime, body.velocity.y, transform.forward.z * forwardforce * Time.deltaTime);
+        body.velocity = new Vector3(transform.forward.x * forwardforce * Time.deltaTime, body.velocity.y, transform.forward.z * forwardforce * Time.deltaTime);
 
+        //jump input
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded) 
         {
             body.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
