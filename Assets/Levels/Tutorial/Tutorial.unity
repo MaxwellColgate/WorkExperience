@@ -254,6 +254,7 @@ MonoBehaviour:
   levelBPM: 0
   spawnPos:
   - {fileID: 703731067}
+  yLevelKillzone: -5
 --- !u!4 &472537961
 Transform:
   m_ObjectHideFlags: 0

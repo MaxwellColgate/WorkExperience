@@ -13,11 +13,33 @@ public class PlayerDeathHandler : MonoBehaviour
     [Tooltip("Is this DeathHandler checking if the player dies when they stand on something?")]
     [SerializeField] bool isGroundCheck;
 
+    float killzone; // The Y level kill zone cached from LevelData
+
+    // Cache the kill level
+    void Start()
+    {
+        killzone = LevelData.Instance.yLevelKillzone;
+    }
+
+    void FixedUpdate()
+    {
+        if(transform.position.y <= killzone)
+        {
+            KillPlayer();
+        }
+    }
+
     // If player hits a non-safe object, send them back to the start of the level
     void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 3 && isGroundCheck) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
 
+        KillPlayer();
+    }
+
+    // Function to actually kill the player
+    public void KillPlayer()
+    {
         LevelManager.Instance.levelAttempt += 1;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);

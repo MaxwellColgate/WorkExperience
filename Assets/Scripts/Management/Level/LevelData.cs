@@ -17,6 +17,9 @@ public class LevelData : MonoBehaviour
     [Tooltip("An ordered list of every spawn point in the level")]
     public Transform[] spawnPos;
 
+    [Tooltip("The minimum height of the level, they player dies if they reach this point")]
+    public float yLevelKillzone;
+
     public static LevelData Instance { get; private set; }
 
     // Set up singleton
