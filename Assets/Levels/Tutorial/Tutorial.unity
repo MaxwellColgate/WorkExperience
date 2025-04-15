@@ -230,10 +230,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 472537961}
-  - component: {fileID: 472537962}
   - component: {fileID: 472537960}
   m_Layer: 0
-  m_Name: LevelManager
+  m_Name: LevelData
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,7 +253,7 @@ MonoBehaviour:
   levelMusic: {fileID: 0}
   levelBPM: 0
   spawnPos:
-  - {fileID: 0}
+  - {fileID: 703731067}
 --- !u!4 &472537961
 Transform:
   m_ObjectHideFlags: 0
@@ -268,23 +267,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &472537962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472537959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0304f70a303f6ed4996d33ed740dcbf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPref: {fileID: 348146334310361059, guid: 5db8c1d9006810349be1822cb463f179, type: 3}
-  levelAttempt: 1
-  currentSpawn: 0
 --- !u!1 &557745876
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,7 +933,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1397172120
 GameObject:
