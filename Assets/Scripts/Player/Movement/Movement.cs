@@ -23,7 +23,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        body.velocity = new Vector3(transform.forward.x * forwardforce * Time.deltaTime, body.velocity.y, transform.forward.z * forwardforce * Time.deltaTime);
+        body.velocity = new Vector3(transform.forward.x * forwardforce * 1000 * Time.deltaTime, body.velocity.y, transform.forward.z * forwardforce * 1000 * Time.deltaTime);
 
         //jump input
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded) 

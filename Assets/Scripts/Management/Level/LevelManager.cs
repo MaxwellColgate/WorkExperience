@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevel()
     {
         GameObject player = Instantiate(playerPref, LevelData.Instance.spawnPos[currentSpawn].position, Quaternion.identity);
+        player.GetComponent<Movement>().forwardforce = LevelData.Instance.levelSpeed;
         player.GetComponent<AudioSource>().clip = LevelData.Instance.levelMusic;
     }
 }

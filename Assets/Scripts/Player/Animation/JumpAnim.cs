@@ -17,8 +17,6 @@ public class RotateAnim : MonoBehaviour
     {
         Quaternion finalRotation = new Quaternion(transform.rotation.x + 90, 0, 0, 1); // The player's rotation after they're done rotating, assumes that the player will always be spinning only forwards
 
-        Debug.Log($"Begin spin! next rotation {finalRotation.x}");
-
         // Rotate player 90 degrees
         while (transform.rotation.x < finalRotation.x)
         {

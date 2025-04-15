@@ -11,8 +11,8 @@ public class LevelData : MonoBehaviour
     [Tooltip("This level's music")]
     public AudioClip levelMusic;
 
-    [Tooltip("The BPM of this level's music, affects speed of level")]
-    public double levelBPM;
+    [Tooltip("How fast this level is")]
+    public float levelSpeed = 2;
 
     [Tooltip("An ordered list of every spawn point in the level")]
     public Transform[] spawnPos;
