@@ -9,6 +9,9 @@ public class GroundedCheck : MonoBehaviour
     [Tooltip("The player's movement script")]
     [SerializeField] Movement playerMovement;
 
+    [Tooltip("The player's rotate animation script")]
+    [SerializeField] RotateAnim rotateAnim;
+
     int collidersEntered; // The number of colliders the player is touching
 
     void OnTriggerEnter(Collider other)
@@ -23,7 +26,7 @@ public class GroundedCheck : MonoBehaviour
         if(collidersEntered == 0)
         {
             playerMovement.isGrounded = false;
+            StartCoroutine(rotateAnim.RotatePlayer());
         }
-        
     }
 }
