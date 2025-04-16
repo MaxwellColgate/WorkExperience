@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pausePanel;
-    // Update is called once per frame
-    void Update()
+
+    private void Start()
     {
-        
+        pausePanel.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void Puase()

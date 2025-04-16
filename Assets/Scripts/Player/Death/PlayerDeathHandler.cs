@@ -32,7 +32,7 @@ public class PlayerDeathHandler : MonoBehaviour
     // If player hits a non-safe object, send them back to the start of the level
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 3 && isGroundCheck) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
+        if(other.gameObject.layer == 3 && isGroundCheck || other.gameObject.layer == 6) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
 
         KillPlayer();
     }

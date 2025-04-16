@@ -21,6 +21,10 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager Instance; //{ get; private set; }
 
+    // Tracks which checkpoints have been triggered (by their ID)
+    public HashSet<int> TriggeredCheckpoints = new HashSet<int>();
+
+
     // Set up singleton
     void Awake()
     {
@@ -36,8 +40,9 @@ public class LevelManager : MonoBehaviour
     //Start the level when called by LevelData
     public void StartLevel()
     {
+
         GameObject player = Instantiate(playerPref, LevelData.Instance.spawnPos[currentSpawn].position, Quaternion.identity);
         player.GetComponent<Movement>().forwardforce = LevelData.Instance.levelSpeed;
-        player.GetComponent<AudioSource>().clip = LevelData.Instance.levelMusic;
+        player.GetComponent<AudioSource>().clip = LevelData.Instance.levelMusic;    
     }
 }
