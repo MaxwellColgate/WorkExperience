@@ -8,7 +8,16 @@ public class ManageLevelSelector : MonoBehaviour
 
     [Tooltip("The level selector menu")]
     [SerializeField] GameObject levelSelectorMenu;
-    
+
+    // Close the level selector if the user presses escape
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            CloseLevelSelector();
+        }
+    }
+
     // Open the level selector
     public void OpenLevelSelector()
     {

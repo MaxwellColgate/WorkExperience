@@ -18,12 +18,10 @@ public class LevelCompiler : MonoBehaviour
     // Find all levels and generate the selection
     void Awake()
     {
-        int currentLevel = 1;
 
-        foreach(LevelMetadata level in levels)
+        foreach (LevelMetadata level in levels)
         {
-            Vector3 levelSpawn = new Vector3(levelSelectRoot.position.x + 50 * currentLevel, levelSelectRoot.position.y, levelSelectRoot.position.z);
-            GameObject newLevel = Instantiate(levelSelectPref, levelSpawn, Quaternion.identity, levelSelectRoot);
+            GameObject newLevel = Instantiate(levelSelectPref, levelSelectRoot);
             SetLevelInfo(level, newLevel);
         }
     }
