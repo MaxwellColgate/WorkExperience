@@ -38,9 +38,14 @@ public class LevelManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    private void OnEnable()
     {
         SceneManager.activeSceneChanged += ActivateLevelSelectMenu;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= ActivateLevelSelectMenu;
     }
 
     //Start the level when called by LevelData

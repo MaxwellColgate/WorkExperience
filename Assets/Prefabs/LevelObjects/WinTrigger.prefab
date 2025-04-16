@@ -804,7 +804,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 8, y: 9, z: -12, w: 4.8125903e-10}
+  m_BoundingSphereOverride: {x: 4.487e-42, y: 6e-44, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5933,6 +5933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winScreen: {fileID: 6065640677385799115}
+  attemptText: {fileID: 7809140375299805341}
 --- !u!1 &6710328648413173096
 GameObject:
   m_ObjectHideFlags: 0
