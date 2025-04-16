@@ -16,8 +16,8 @@ public class JumpPadBoost : MonoBehaviour
 
         Rigidbody playerBody = other.gameObject.GetComponentInParent<Rigidbody>();
 
-        playerBody.velocity = new Vector3(playerBody.velocity.x, 0, playerBody.velocity.z);
-        playerBody.AddForce(Vector3.up * boostStrength, ForceMode.Impulse);
+        playerBody.velocity = new Vector3(playerBody.velocity.x, boostStrength, playerBody.velocity.z);
+        //playerBody.AddForce(Vector3.up * boostStrength, ForceMode.Impulse);
         other.gameObject.GetComponentInParent<Movement>().isGrounded = false;
     }
 }
