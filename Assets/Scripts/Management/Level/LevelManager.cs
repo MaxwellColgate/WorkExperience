@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -37,6 +38,11 @@ public class LevelManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        SceneManager.activeSceneChanged += ActivateLevelSelectMenu;
+    }
+
     //Start the level when called by LevelData
     public void StartLevel()
     {
@@ -44,5 +50,16 @@ public class LevelManager : MonoBehaviour
         GameObject player = Instantiate(playerPref, LevelData.Instance.spawnPos[currentSpawn].position, Quaternion.identity);
         player.GetComponent<Movement>().forwardforce = LevelData.Instance.levelSpeed;
         player.GetComponent<AudioSource>().clip = LevelData.Instance.levelMusic;    
+    }
+
+    // If the player leaves the level, auto open the level select menu and then destroy this object
+    public void ActivateLevelSelectMenu(Scene current, Scene next)
+    {
+        if(next.name == "MainMenu")
+        {
+            ManageLevelSelector levelSelectScreen = GameObject.FindGameObjectWithTag("LevelSelectMenu").GetComponent<ManageLevelSelector>();
+            levelSelectScreen.OpenLevelSelector();
+            Destroy(gameObject);
+        }
     }
 }
