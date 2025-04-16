@@ -13,14 +13,14 @@ public class GroundedCheck : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player") { return; }
+        if(other.gameObject.tag == "Player" || other.gameObject.layer == 7) { return; }
         collidersEntered += 1;
         playerMovement.isGrounded = true;
     }
 
     void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Player") { return; }
+        if(other.gameObject.tag == "Player" || other.gameObject.layer == 7) { return; }
         collidersEntered -= 1;
         if(collidersEntered == 0)
         {

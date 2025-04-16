@@ -9,16 +9,16 @@ public class FallCheck : MonoBehaviour
     [Tooltip("The player's rotate animation script")]
     [SerializeField] RotateAnim rotateAnim;
 
-    int collidersEntered; // The number of colliders the player is touching
+    public int collidersEntered; // The number of colliders the player is touching
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag != "Player") { collidersEntered += 1; }
+        if (other.gameObject.tag != "Player" || other.gameObject.layer == 7) { collidersEntered += 1; }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if(other.gameObject.tag == "Player") { return; }
+        if(other.gameObject.tag == "Player" || other.gameObject.layer == 7) { return; }
         collidersEntered -= 1;
         if (collidersEntered == 0)
         {
