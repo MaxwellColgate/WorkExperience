@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelMusic: {fileID: 0}
-  levelSpeed: 2.5
+  levelSpeed: 350
   spawnPos:
   - {fileID: 703731067}
   yLevelKillzone: -5

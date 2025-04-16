@@ -9,24 +9,22 @@ public class GroundedCheck : MonoBehaviour
     [Tooltip("The player's movement script")]
     [SerializeField] Movement playerMovement;
 
-    [Tooltip("The player's rotate animation script")]
-    [SerializeField] RotateAnim rotateAnim;
-
     int collidersEntered; // The number of colliders the player is touching
 
     void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.tag == "Player") { return; }
         collidersEntered += 1;
         playerMovement.isGrounded = true;
     }
 
     void OnTriggerExit(Collider other)
     {
+        if(other.gameObject.tag == "Player") { return; }
         collidersEntered -= 1;
         if(collidersEntered == 0)
         {
             playerMovement.isGrounded = false;
-            StartCoroutine(rotateAnim.RotatePlayer());
         }
     }
 }

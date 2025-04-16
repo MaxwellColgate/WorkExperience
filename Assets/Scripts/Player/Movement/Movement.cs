@@ -10,7 +10,7 @@ public class Movement : MonoBehaviour
     [Tooltip("The player's camera manager")]
     [SerializeField] CameraManager cameraMan;
 
-    public float forwardforce = 2000f;
+    public float forwardforce = 300;
     public float jumpforce = 5f;
 
     public bool isGrounded;
@@ -23,11 +23,12 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        body.velocity = new Vector3(transform.forward.x * forwardforce * 1000 * Time.deltaTime, body.velocity.y, transform.forward.z * forwardforce * 1000 * Time.deltaTime);
+        body.velocity = new Vector3(transform.forward.x * forwardforce * Time.deltaTime, body.velocity.y, transform.forward.z * forwardforce * Time.deltaTime);
 
         //jump input
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded) 
         {
+            isGrounded = false;
             body.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
         }
 
