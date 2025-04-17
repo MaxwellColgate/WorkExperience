@@ -549,6 +549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5129079364575287546}
   - component: {fileID: 8356856230264330360}
+  - component: {fileID: 6502746014226372379}
   m_Layer: 6
   m_Name: UICamera
   m_TagString: Untagged
@@ -614,6 +615,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &6502746014226372379
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3111101913270482260}
+  m_Enabled: 1
 --- !u!1 &3340746064610935446
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +813,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 4.487e-42, y: 6e-44, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.02e-43, y: 0, z: 0, w: 2081521}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

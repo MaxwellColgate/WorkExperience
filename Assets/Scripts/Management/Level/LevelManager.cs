@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
     [Tooltip("The player prefab")]
     [SerializeField] GameObject playerPref;
 
+    [Tooltip("The music speaker prefab")]
+    [SerializeField] GameObject musicSpeakerPref;
+
     [Header("Data")]
 
     [Tooltip("How many times the player has attempted the level")]
@@ -20,7 +23,9 @@ public class LevelManager : MonoBehaviour
     [Tooltip("The current spawn point being used in LevelData's spawnPos array")]
     public int currentSpawn = 0;
 
-    public static LevelManager Instance; //{ get; private set; }
+    public static event Action<int, AudioSource> StartingFromCheckpoint; // Notifies checkpoints if we are starting from a checkpoint
+
+    public static LevelManager Instance { get; private set; }
 
     // Tracks which checkpoints have been triggered (by their ID)
     public HashSet<int> TriggeredCheckpoints = new HashSet<int>();
@@ -51,10 +56,24 @@ public class LevelManager : MonoBehaviour
     //Start the level when called by LevelData
     public void StartLevel()
     {
+        Transform spawnTransform = LevelData.Instance.spawnPos[currentSpawn];
 
-        GameObject player = Instantiate(playerPref, LevelData.Instance.spawnPos[currentSpawn].position, Quaternion.identity);
+        GameObject player = Instantiate(playerPref, spawnTransform.position, spawnTransform.rotation);
         player.GetComponent<Movement>().forwardforce = LevelData.Instance.levelSpeed;
-        player.GetComponent<AudioSource>().clip = LevelData.Instance.levelMusic;    
+
+        GameObject musicSpeaker = Instantiate(musicSpeakerPref, spawnTransform.position, spawnTransform.rotation);
+        musicSpeaker.GetComponent<FollowPlayer>().player = player.transform;
+
+        AudioSource musicSource = musicSpeaker.GetComponent<AudioSource>(); // Cache the player's speaker because we use it more than once
+        musicSource.clip = LevelData.Instance.levelMusic;
+
+        // If starting from checkpoint, notify checkpoints so they can set the music's point
+        if(currentSpawn != 0)
+        {
+            StartingFromCheckpoint.Invoke(currentSpawn, musicSource);
+        }
+
+        musicSource.Play();
     }
 
     // If the player leaves the level, auto open the level select menu and then destroy this object

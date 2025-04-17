@@ -14,11 +14,12 @@ public class LevelWin : MonoBehaviour
     [Tooltip("The attempt text on the win screen")]
     [SerializeField] TextMeshProUGUI attemptText;
 
+    // If the player touches the win trigger, activate the win sequence
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.tag != "Player") { return; }
 
-        if(LevelManager.Instance.levelAttempt == 1) { attemptText.text = "First try!!"; }
+        if (LevelManager.Instance.levelAttempt == 1) { attemptText.text = "First try!!"; }
         else { attemptText.text = "Attempts: " + LevelManager.Instance.levelAttempt; }
         
         winScreen.SetActive(true);
