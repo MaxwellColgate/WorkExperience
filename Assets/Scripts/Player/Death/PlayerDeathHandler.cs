@@ -10,6 +10,12 @@ public class PlayerDeathHandler : MonoBehaviour
     [Tooltip("The player's rigidbody")]
     [SerializeField] Rigidbody playerRigidbody;
 
+    [Tooltip("The player's model")]
+    [SerializeField] MeshRenderer playerModel;
+
+    [Tooltip("The audio player that plays the death sound")]
+    [SerializeField] AudioSource deathAudio;
+
     [Tooltip("Is this DeathHandler checking if the player dies when they stand on something?")]
     [SerializeField] bool isGroundCheck;
 
@@ -25,7 +31,7 @@ public class PlayerDeathHandler : MonoBehaviour
     {
         if(transform.position.y <= killzone)
         {
-            KillPlayer();
+            StartCoroutine(KillPlayer());
         }
     }
 
@@ -34,12 +40,23 @@ public class PlayerDeathHandler : MonoBehaviour
     {
         if(other.gameObject.layer == 3 && isGroundCheck || other.gameObject.layer == 6 || other.gameObject.layer == 7) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
 
-        KillPlayer();
+        StartCoroutine(KillPlayer());
     }
 
-    // Function to actually kill the player
-    public void KillPlayer()
+    // Coroutine to actually kill the player
+    public IEnumerator KillPlayer()
     {
+        // Hide player and stop them from moving
+        playerModel.enabled = false;
+        playerRigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        Destroy(LevelManager.Instance.musicSpeaker);
+
+        deathAudio.Play();
+
+        // Short break between attempts
+        yield return new WaitForSeconds(2);
+
+        // Reload level
         LevelManager.Instance.levelAttempt += 1;
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);

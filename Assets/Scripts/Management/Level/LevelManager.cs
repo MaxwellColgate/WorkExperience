@@ -23,6 +23,14 @@ public class LevelManager : MonoBehaviour
     [Tooltip("The current spawn point being used in LevelData's spawnPos array")]
     public int currentSpawn = 0;
 
+    [Header("Level objects")]
+
+    [Tooltip("The player object instantiated in the level")]
+    public GameObject player;
+
+    [Tooltip("The speaker that is currently playing music in the level")]
+    public GameObject musicSpeaker;
+
     public static event Action<int, AudioSource> StartingFromCheckpoint; // Notifies checkpoints if we are starting from a checkpoint
 
     public static LevelManager Instance { get; private set; }
@@ -58,10 +66,10 @@ public class LevelManager : MonoBehaviour
     {
         Transform spawnTransform = LevelData.Instance.spawnPos[currentSpawn];
 
-        GameObject player = Instantiate(playerPref, spawnTransform.position, spawnTransform.rotation);
+        player = Instantiate(playerPref, spawnTransform.position, spawnTransform.rotation);
         player.GetComponent<Movement>().forwardforce = LevelData.Instance.levelSpeed;
 
-        GameObject musicSpeaker = Instantiate(musicSpeakerPref, spawnTransform.position, spawnTransform.rotation);
+        musicSpeaker = Instantiate(musicSpeakerPref, spawnTransform.position, spawnTransform.rotation);
         musicSpeaker.GetComponent<FollowPlayer>().player = player.transform;
 
         AudioSource musicSource = musicSpeaker.GetComponent<AudioSource>(); // Cache the player's speaker because we use it more than once

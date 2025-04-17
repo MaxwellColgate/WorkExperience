@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     public float forwardforce = 300;
 
     [Tooltip("How long you have to wait (in seconds) after turning before you can turn again")]
-    public float waitBetweenTurns = 0.2f;
+    public float waitBetweenTurns = 0.3f;
 
     public float jumpforce = 5f;
 
