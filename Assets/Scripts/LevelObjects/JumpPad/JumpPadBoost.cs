@@ -9,6 +9,9 @@ public class JumpPadBoost : MonoBehaviour
     [Tooltip("How hard the player is launched upwards")]
     [SerializeField] float boostStrength = 8;
 
+    [Tooltip("The jump pad's boing sound effect")]
+    [SerializeField] AudioSource jumpPadSFX;
+
     // Reset the player's y velocity and then boost them upwards
     private void OnTriggerEnter(Collider other)
     {
@@ -19,5 +22,7 @@ public class JumpPadBoost : MonoBehaviour
         playerBody.velocity = new Vector3(playerBody.velocity.x, boostStrength, playerBody.velocity.z);
         //playerBody.AddForce(Vector3.up * boostStrength, ForceMode.Impulse);
         other.gameObject.GetComponentInParent<Movement>().isGrounded = false;
+
+        jumpPadSFX.Play();
     }
 }
