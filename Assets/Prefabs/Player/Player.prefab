@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 348146334310361056}
   - component: {fileID: 348146334310361057}
   - component: {fileID: 348146334310361063}
+  - component: {fileID: 5949316197952420939}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -181,81 +182,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 348146334310361057}
   cameraMan: {fileID: 348146335101730835}
+  playerSFXSource: {fileID: 5949316197952420939}
+  jumpSFX: {fileID: 8300000, guid: aa6bd9c1883db0141afc52ab51defbdb, type: 3}
   forwardforce: 300
   waitBetweenTurns: 0.3
-  jumpforce: 8
+  jumpforce: 5.3
   isGrounded: 1
---- !u!1 &348146335086500512
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 348146335086500519}
-  - component: {fileID: 348146335086500518}
-  - component: {fileID: 348146335086500517}
-  - component: {fileID: 4022463511638862691}
-  m_Layer: 0
-  m_Name: FrontCrashCheck
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &348146335086500519
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348146335086500512}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.69}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 348146334310361058}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &348146335086500518
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348146335086500512}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.97, z: 0.025737971}
-  m_Center: {x: 0, y: 0, z: -0.15937392}
---- !u!114 &348146335086500517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348146335086500512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 123f1f93a1c2c794ea007ff6814dda37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerRigidbody: {fileID: 348146334310361057}
-  playerMovement: {fileID: 348146334310361063}
-  playerModel: {fileID: 348146334022912276}
-  deathAudio: {fileID: 4022463511638862691}
-  isGroundCheck: 0
---- !u!82 &4022463511638862691
+--- !u!82 &5949316197952420939
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348146335086500512}
+  m_GameObject: {fileID: 348146334310361059}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -345,6 +284,68 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &348146335086500512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 348146335086500519}
+  - component: {fileID: 348146335086500518}
+  - component: {fileID: 348146335086500517}
+  m_Layer: 0
+  m_Name: FrontCrashCheck
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &348146335086500519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348146335086500512}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.69}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 348146334310361058}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &348146335086500518
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348146335086500512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.97, z: 0.025737971}
+  m_Center: {x: 0, y: 0, z: -0.15937392}
+--- !u!114 &348146335086500517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348146335086500512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123f1f93a1c2c794ea007ff6814dda37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRigidbody: {fileID: 348146334310361057}
+  playerModel: {fileID: 348146334022912276}
+  deathAudio: {fileID: 5949316197952420939}
+  isGroundCheck: 0
 --- !u!1 &348146335094279493
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,8 +665,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.17}
-  m_Center: {x: 0, y: 0, z: -1.6548313e-16}
+  m_Size: {x: 1, y: 1, z: 0.18959084}
+  m_Center: {x: 0, y: -2.8179013e-17, z: 0.00979542}
 --- !u!114 &6506436295731739296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,9 +680,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRigidbody: {fileID: 348146334310361057}
-  playerMovement: {fileID: 348146334310361063}
   playerModel: {fileID: 348146334022912276}
-  deathAudio: {fileID: 4022463511638862691}
+  deathAudio: {fileID: 5949316197952420939}
   isGroundCheck: 1
 --- !u!114 &8593119562611878149
 MonoBehaviour:

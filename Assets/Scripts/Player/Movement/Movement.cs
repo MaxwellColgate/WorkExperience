@@ -10,6 +10,12 @@ public class Movement : MonoBehaviour
     [Tooltip("The player's camera manager")]
     [SerializeField] CameraManager cameraMan;
 
+    [Tooltip("The player's SFX audio source")]
+    [SerializeField] AudioSource playerSFXSource;
+
+    [Tooltip("The player's jump sound effect")]
+    [SerializeField] AudioClip jumpSFX;
+
     public float forwardforce = 300;
 
     [Tooltip("How long you have to wait (in seconds) after turning before you can turn again")]
@@ -35,21 +41,24 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && isGrounded) 
         {
             isGrounded = false;
-            body.velocity = new Vector2(body.velocity.x, 0);
-            body.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
+            body.velocity = new Vector2(body.velocity.x, jumpforce);
+            playerSFXSource.PlayOneShot(jumpSFX);
+
         }
 
-        //Rotate left (A key)
-        if (Input.GetKeyDown(KeyCode.A) && currentTurnWait >= waitBetweenTurns) 
+        //Rotate left (A key or left arrow)
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) 
         {
+            if(currentTurnWait < waitBetweenTurns) { return; }
             transform.Rotate(0, -90f, 0);
             cameraMan.SwitchCameraPos(CameraManager.cameraPositions.defaultLeft, 0.02f);
             currentTurnWait = 0;
         }
 
-        //Rotate Right (D key )
-        if (Input.GetKeyDown(KeyCode.D) && currentTurnWait >= waitBetweenTurns)
+        //Rotate Right (D key or right arrow)
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
         {
+            if(currentTurnWait < waitBetweenTurns) { return; }
             transform.Rotate(0, 90f, 0);
             cameraMan.SwitchCameraPos(CameraManager.cameraPositions.defaultRight, 0.02f);
             currentTurnWait = 0;

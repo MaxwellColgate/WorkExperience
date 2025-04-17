@@ -21,6 +21,8 @@ public class PlayerDeathHandler : MonoBehaviour
 
     float killzone; // The Y level kill zone cached from LevelData
 
+    bool alreadyDied; // Ensure player only dies once
+
     // Cache the kill level
     void Start()
     {
@@ -29,7 +31,7 @@ public class PlayerDeathHandler : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(transform.position.y <= killzone)
+        if(transform.position.y <= killzone && !alreadyDied)
         {
             StartCoroutine(KillPlayer());
         }
@@ -38,7 +40,19 @@ public class PlayerDeathHandler : MonoBehaviour
     // If player hits a non-safe object, send them back to the start of the level
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == 3 && isGroundCheck || other.gameObject.layer == 6 || other.gameObject.layer == 7) { return; } // As hitting most objects in the game should kill the player, marking the safe objects to touch makes more sense
+        // Don't kill player if they touch safe objects
+        switch (other.gameObject.layer){
+            case 3:
+                if (isGroundCheck) { return; }
+                break;
+            case 6:
+                return;
+            case 7:
+                return;
+            default:
+                break;
+        }
+        if (alreadyDied) { return; }
 
         StartCoroutine(KillPlayer());
     }
@@ -46,6 +60,8 @@ public class PlayerDeathHandler : MonoBehaviour
     // Coroutine to actually kill the player
     public IEnumerator KillPlayer()
     {
+        alreadyDied = true;
+
         // Hide player and stop them from moving
         playerModel.enabled = false;
         playerRigidbody.constraints = RigidbodyConstraints.FreezeAll;
